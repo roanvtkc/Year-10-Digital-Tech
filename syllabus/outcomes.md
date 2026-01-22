@@ -62,7 +62,7 @@ production processes, social, ethical, economic and sustainable factors, and leg
 
 ### Strand: Data representation
 - Represent documents online as content (text), structure (mark-up) and presentation (styling) and the purpose of these distinctions.
-- Data compression techniques for an intended purpose (verify year-level placement in source table).
+Note: Data compression techniques are listed in Year 9 in the scope and sequence table. The Year 10 description mentions interrogating compression techniques; include as extension if needed.
 
 ### Strand: Acquiring, managing and analysing data
 - Analyse and visualise data interactively using a range of software, including spreadsheets and/or relational databases, to draw conclusions and make predictions by identifying trends and outliers.
@@ -103,7 +103,6 @@ These tags are internal labels for planning and mapping. They are derived from t
 - DS10-1: Secure access to data in networked systems (hardware/software focus).
 - DS10-2: Evaluate hardware specifications for performance and task suitability.
 - DR10-1: Online documents as content, structure, presentation and purpose of distinctions.
-- DR10-2: Data compression techniques for an intended purpose (verify year-level placement).
 - DA10-1: Analyse/visualise data with spreadsheets and relational databases; draw conclusions and predictions.
 - DA10-2: Model and query entities and relationships using structured data.
 - PS10-1: Apply APPs to critique systems and manage digital footprint.
