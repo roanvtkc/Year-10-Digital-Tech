@@ -4,7 +4,7 @@
 Design and implement modular algorithms, validate with test cases, and debug programs.
 
 ## Outcome tags
-DI10-3, DI10-4, DI10-5
+DI10-3 (WA10DIGDI3), DI10-4 (WA10DIGDI4), DI10-5 (WA10DIGDI5)
 
 ## Deliverables
 - Algorithm designs (flow chart and/or pseudocode)

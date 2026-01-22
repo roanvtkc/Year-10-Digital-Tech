@@ -3,7 +3,7 @@
 - Dates: 30 Mar - 2 Apr
 - Focus: Consolidation and reflections
 - Assessment/Checkpoint: Minor A1 due; Major project brief draft
-- Outcome tags: ID10-2, ID10-3
+- Outcome tags: ID10-2 (WA10DIGDTID2), ID10-3 (WA10DIGDTID3)
 
 ## Lesson sequence (draft)
 1. 

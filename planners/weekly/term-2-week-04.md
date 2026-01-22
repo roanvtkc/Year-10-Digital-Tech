@@ -3,7 +3,7 @@
 - Dates: 11 May - 15 May
 - Focus: Querying structured data
 - Assessment/Checkpoint:  
-- Outcome tags: DA10-2
+- Outcome tags: DA10-2 (WA10DIGAD2)
 
 ## Lesson sequence (draft)
 1. 

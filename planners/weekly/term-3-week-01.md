@@ -3,7 +3,7 @@
 - Dates: 21 Jul - 24 Jul
 - Focus: Algorithms: flow charts and pseudocode
 - Assessment/Checkpoint:  
-- Outcome tags: DI10-3
+- Outcome tags: DI10-3 (WA10DIGDI3)
 
 ## Lesson sequence (draft)
 1. 

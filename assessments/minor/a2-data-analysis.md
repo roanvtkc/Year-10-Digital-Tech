@@ -4,7 +4,7 @@
 Analyse data and model structured relationships to support decisions and predictions relevant to the major project.
 
 ## Outcome tags
-DA10-1, DA10-2, DR10-1
+DA10-1 (WA10DIGAD1), DA10-2 (WA10DIGAD2), DR10-1 (WA10DIGDR1)
 
 ## Deliverables
 - Curated dataset with source notes

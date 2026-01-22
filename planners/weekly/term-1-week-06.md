@@ -3,7 +3,7 @@
 - Dates: 9 Mar - 13 Mar
 - Focus: Prototype build, iterate on feedback
 - Assessment/Checkpoint:  
-- Outcome tags: DI10-2, EV10-1
+- Outcome tags: DI10-2 (WA10DIGDI2), EV10-1 (WA10DIGDTEV1)
 
 ## Lesson sequence (draft)
 1. 

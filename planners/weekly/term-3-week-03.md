@@ -3,7 +3,7 @@
 - Dates: 3 Aug - 7 Aug
 - Focus: Logical operators and control
 - Assessment/Checkpoint:  
-- Outcome tags: DI10-3
+- Outcome tags: DI10-3 (WA10DIGDI3)
 
 ## Lesson sequence (draft)
 1. 

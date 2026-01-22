@@ -3,7 +3,7 @@
 - Dates: 14 Sep - 18 Sep
 - Focus: Integration and QA
 - Assessment/Checkpoint:  
-- Outcome tags: DI10-4
+- Outcome tags: DI10-4 (WA10DIGDI4)
 
 ## Lesson sequence (draft)
 1. 

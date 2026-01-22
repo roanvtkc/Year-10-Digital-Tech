@@ -3,7 +3,7 @@
 - Dates: 24 Aug - 28 Aug
 - Focus: Build sprint
 - Assessment/Checkpoint: Minor A3 due
-- Outcome tags: DI10-3, DI10-4, DI10-5
+- Outcome tags: DI10-3 (WA10DIGDI3), DI10-4 (WA10DIGDI4), DI10-5 (WA10DIGDI5)
 
 ## Lesson sequence (draft)
 1. 

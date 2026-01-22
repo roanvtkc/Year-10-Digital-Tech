@@ -6,7 +6,7 @@ Design and build a database-driven digital solution that demonstrates end-to-end
 Repository reference: https://github.com/roanvtkc/simpsons-house
 
 ## Outcome tags
-DS10-1, DS10-2, DR10-1, DA10-1, DA10-2, DI10-1, DI10-2, DI10-3, DI10-4, DI10-5, PM10-1, ID10-1, ID10-2, ID10-3, DSN10-1, PI10-1, EV10-1
+DS10-1 (WA10DIGDS1), DS10-2 (scope/sequence), DR10-1 (WA10DIGDR1), DA10-1 (WA10DIGAD1), DA10-2 (WA10DIGAD2), DI10-1 (WA10DIGDI1), DI10-2 (WA10DIGDI2), DI10-3 (WA10DIGDI3), DI10-4 (WA10DIGDI4), DI10-5 (WA10DIGDI5), PM10-1 (WA10DIGDTPM1), ID10-1 (WA10DIGDTID1), ID10-2 (WA10DIGDTID2), ID10-3 (WA10DIGDTID3), DSN10-1 (WA10DIGDTDE1), PI10-1 (WA10DIGDTPI1), EV10-1 (WA10DIGDTEV1)
 
 ## Deliverables
 - Project proposal and design brief

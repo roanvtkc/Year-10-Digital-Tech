@@ -3,7 +3,7 @@
 - Dates: 17 Aug - 21 Aug
 - Focus: Data structures and program patterns
 - Assessment/Checkpoint:  
-- Outcome tags: DI10-5
+- Outcome tags: DI10-5 (WA10DIGDI5)
 
 ## Lesson sequence (draft)
 1. 

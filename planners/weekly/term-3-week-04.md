@@ -3,7 +3,7 @@
 - Dates: 10 Aug - 14 Aug
 - Focus: Testing with cases, debugging
 - Assessment/Checkpoint:  
-- Outcome tags: DI10-4
+- Outcome tags: DI10-4 (WA10DIGDI4)
 
 ## Lesson sequence (draft)
 1. 

@@ -3,7 +3,7 @@
 - Dates: 13 Oct - 16 Oct
 - Focus: APPs and digital footprint
 - Assessment/Checkpoint:  
-- Outcome tags: PS10-1
+- Outcome tags: PS10-1 (WA10DIGPS1)
 
 ## Lesson sequence (draft)
 1. 

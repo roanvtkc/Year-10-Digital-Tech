@@ -3,7 +3,7 @@
 - Dates: 7 Sep - 11 Sep
 - Focus: UX/UI refinement and accessibility
 - Assessment/Checkpoint:  
-- Outcome tags: DSN10-1
+- Outcome tags: DSN10-1 (WA10DIGDTDE1)
 
 ## Lesson sequence (draft)
 1. 

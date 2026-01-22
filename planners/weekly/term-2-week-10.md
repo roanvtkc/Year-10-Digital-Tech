@@ -3,7 +3,7 @@
 - Dates: 22 Jun - 26 Jun
 - Focus: Project planning for build phase
 - Assessment/Checkpoint:  
-- Outcome tags: PM10-1
+- Outcome tags: PM10-1 (WA10DIGDTPM1)
 
 ## Lesson sequence (draft)
 1. 

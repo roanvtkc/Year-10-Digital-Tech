@@ -3,7 +3,7 @@
 - Dates: 4 May - 8 May
 - Focus: Entity-relationship modeling
 - Assessment/Checkpoint:  
-- Outcome tags: DA10-2
+- Outcome tags: DA10-2 (WA10DIGAD2)
 
 ## Lesson sequence (draft)
 1. 

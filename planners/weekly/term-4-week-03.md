@@ -3,7 +3,7 @@
 - Dates: 26 Oct - 30 Oct
 - Focus: Case study writing and critique
 - Assessment/Checkpoint: Minor A4 due
-- Outcome tags: PS10-1, PS10-2
+- Outcome tags: PS10-1 (WA10DIGPS1), PS10-2 (WA10DIGPS2)
 
 ## Lesson sequence (draft)
 1. 

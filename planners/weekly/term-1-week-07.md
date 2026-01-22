@@ -3,7 +3,7 @@
 - Dates: 16 Mar - 20 Mar
 - Focus: Design brief drafting, project planning
 - Assessment/Checkpoint:  
-- Outcome tags: ID10-2, PM10-1
+- Outcome tags: ID10-2 (WA10DIGDTID2), PM10-1 (WA10DIGDTPM1)
 
 ## Lesson sequence (draft)
 1. 

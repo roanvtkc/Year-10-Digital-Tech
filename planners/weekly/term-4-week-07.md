@@ -3,7 +3,7 @@
 - Dates: 23 Nov - 27 Nov
 - Focus: Reflection and evaluation
 - Assessment/Checkpoint:  
-- Outcome tags: EV10-1
+- Outcome tags: EV10-1 (WA10DIGDTEV1)
 
 ## Lesson sequence (draft)
 1. 

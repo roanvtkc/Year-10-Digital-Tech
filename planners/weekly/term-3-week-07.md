@@ -3,7 +3,7 @@
 - Dates: 31 Aug - 4 Sep
 - Focus: Implement core features
 - Assessment/Checkpoint: Major project milestone 2
-- Outcome tags: DI10-5, PM10-1
+- Outcome tags: DI10-5 (WA10DIGDI5), PM10-1 (WA10DIGDTPM1)
 
 ## Lesson sequence (draft)
 1. 

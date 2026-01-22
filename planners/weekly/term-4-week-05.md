@@ -3,7 +3,7 @@
 - Dates: 9 Nov - 13 Nov
 - Focus: Final build and documentation
 - Assessment/Checkpoint:  
-- Outcome tags: PI10-1, PM10-1
+- Outcome tags: PI10-1 (WA10DIGDTPI1), PM10-1 (WA10DIGDTPM1)
 
 ## Lesson sequence (draft)
 1. 

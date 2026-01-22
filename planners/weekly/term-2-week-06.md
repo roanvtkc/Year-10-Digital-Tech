@@ -3,7 +3,7 @@
 - Dates: 25 May - 29 May
 - Focus: Apply data skills to project context
 - Assessment/Checkpoint: Minor A2 due
-- Outcome tags: DA10-1, DA10-2
+- Outcome tags: DA10-1 (WA10DIGAD1), DA10-2 (WA10DIGAD2)
 
 ## Lesson sequence (draft)
 1. 

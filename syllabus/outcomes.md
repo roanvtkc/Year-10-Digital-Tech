@@ -4,6 +4,7 @@ Sources:
 - `references/raw/Technologies-Digital-Technologies-Year-level-descriptions-P-10-For-implementation-in-2026.PDF`
 - `references/raw/Technologies-Digital-Technologies-Achievement-standards-P-10-For-implementation-in-2026.PDF`
 - `references/raw/Technologies-Digital-Technologies-Scope-and-sequence-of-the-mandated-curriculum-content-For-implementation-in-2026.DOCX`
+- `references/raw/curriculum.pdf`
 
 ## Year 10 description (context)
 In the middle adolescence phase of schooling, teaching and learning programs encourage students to
@@ -55,67 +56,67 @@ test appropriate technologies and processes to produce designed solutions. They 
 using digital technologies with an agile and collaborative approach, while considering time,
 production processes, social, ethical, economic and sustainable factors, and legal responsibilities.
 
-## Mandated content (scope and sequence) - Year 10
+## Curriculum content descriptions (codes) - Year 10
 ### Strand: Digital systems
-- Hardware and software are used to manage, control and secure access to data in networked digital systems.
-- The effect of hardware specifications on performance and the appropriateness of hardware for particular tasks.
+- WA10DIGDS1: Hardware and software are used to manage, control and secure access to data in networked digital systems.
+- Scope/sequence (no code): The effect of hardware specifications on performance and the appropriateness of hardware for particular tasks.
 
 ### Strand: Data representation
-- Represent documents online as content (text), structure (mark-up) and presentation (styling) and the purpose of these distinctions.
-Note: Data compression techniques are listed in Year 9 in the scope and sequence table. The Year 10 description mentions interrogating compression techniques; include as extension if needed.
+- WA10DIGDR1: Represent documents online as content (text), structure (mark-up) and presentation (styling) and the purpose of these distinctions.
+- Note: Data compression techniques are listed in Year 9 in the scope and sequence table. The Year 10 description mentions interrogating compression techniques; include as extension if needed.
 
 ### Strand: Acquiring, managing and analysing data
-- Analyse and visualise data interactively using a range of software, including spreadsheets and/or relational databases, to draw conclusions and make predictions by identifying trends and outliers.
-- Model and query entities and their relationships using structured data.
+- WA10DIGAD1: Analyse and visualise data interactively using a range of software, including spreadsheets and/or relational databases, to draw conclusions and make predictions by identifying trends and outliers.
+- WA10DIGAD2: Model and query entities and their relationships using structured data.
 
 ### Strand: Privacy and security
-- Australian Privacy Principles (APPs) are used to critique systems and manage the digital footprint of individuals.
-- User or software supply chain vulnerabilities.
+- WA10DIGPS1: Australian Privacy Principles (APPs) are used to critique systems and manage the digital footprint of individuals.
+- WA10DIGPS2: User or software supply chain vulnerabilities.
 
 ### Strand: Digital implementation
-- Define and decompose real-world problems by using data gathering techniques to create the client needs.
-- Design and prototype the user experience and user interface (UX/UI) of a digital system based on client needs.
-- Design modular algorithms involving functions and logical operators (AND, OR, NOT) and represent them as flow charts and/or pseudocode.
-- Validate algorithms and programs by comparing output against a range of test cases.
-- Implement, modify and debug modular programs, applying algorithms and data structures in a general-purpose programming language.
+- WA10DIGDI1: Define and decompose real-world problems by using data gathering techniques to create the client needs.
+- WA10DIGDI2: Design and prototype the user experience and user interface (UX/UI) of a digital system based on client needs.
+- WA10DIGDI3: Design modular algorithms involving functions and logical operators (AND, OR, NOT) and represent them as flow charts and/or pseudocode.
+- WA10DIGDI4: Validate algorithms and programs by comparing output against a range of test cases.
+- WA10DIGDI5: Implement, modify and debug modular programs, applying algorithms and data structures in a general-purpose programming language.
 
 ### Design thinking skills
 Sub-strand: Project management
-- Manage projects, using suitable technologies, with an agile and collaborative approach. Use project management processes to consider time, production processes, social, ethical, economic and sustainable factors, and legal responsibilities.
+- WA10DIGDTPM1: Manage projects, using suitable technologies, with an agile and collaborative approach. Use project management processes to consider time, production processes, social, ethical, economic and sustainable factors, and legal responsibilities.
 
 Sub-strand: Investigating and defining
-- Ideate a problem and define the needs of the client/stakeholder through anecdotal evidence and/or data gathering techniques.
-- Develop a design brief for a solution or to innovate an existing product, service or environment.
-- Investigate a range of technologies, resources and/or components to develop ideas and solutions, with consideration of social and ethical factors, legal responsibilities and competing constraints.
+- WA10DIGDTID1: Ideate a problem and define the needs of the client/stakeholder through anecdotal evidence and/or data gathering techniques.
+- WA10DIGDTID2: Develop a design brief for a solution or to innovate an existing product, service or environment.
+- WA10DIGDTID3: Investigate a range of technologies, resources and/or components to develop ideas and solutions, with consideration of social and ethical factors, legal responsibilities and competing constraints.
 
 Sub-strand: Designing
-- Design alternative solutions considering available technologies, functionality, accessibility, usability and aesthetics, using appropriate technical terms.
+- WA10DIGDTDE1: Design alternative solutions considering available technologies, functionality, accessibility, usability and aesthetics, using appropriate technical terms.
 
 Sub-strand: Producing and implementing
-- Select, justify, implement and test a range of technologies, techniques and processes to produce solutions and/or prototypes.
+- WA10DIGDTPI1: Select, justify, implement and test a range of technologies, techniques and processes to produce solutions and/or prototypes.
 
 Sub-strand: Evaluating
-- Evaluate design processes and solutions against student-developed criteria.
+- WA10DIGDTEV1: Evaluate design processes and solutions against student-developed criteria.
 
 ## Local outcome tags (for assessment mapping only)
 These tags are internal labels for planning and mapping. They are derived from the Year 10 content and achievement standard.
 
-- DS10-1: Secure access to data in networked systems (hardware/software focus).
-- DS10-2: Evaluate hardware specifications for performance and task suitability.
-- DR10-1: Online documents as content, structure, presentation and purpose of distinctions.
-- DA10-1: Analyse/visualise data with spreadsheets and relational databases; draw conclusions and predictions.
-- DA10-2: Model and query entities and relationships using structured data.
-- PS10-1: Apply APPs to critique systems and manage digital footprint.
-- PS10-2: Identify user or software supply chain vulnerabilities.
-- DI10-1: Define/decompose real-world problems using data gathering for client needs.
-- DI10-2: Design and prototype UX/UI based on client needs.
-- DI10-3: Design modular algorithms with functions and logical operators; represent as flow charts/pseudocode.
-- DI10-4: Validate algorithms/programs using test cases.
-- DI10-5: Implement/modify/debug modular programs using algorithms and data structures.
-- PM10-1: Manage projects with agile/collab approach; consider time, production, social, ethical, economic, sustainability, legal.
-- ID10-1: Ideate and define client/stakeholder needs via evidence/data gathering.
-- ID10-2: Develop design briefs for solutions or innovations.
-- ID10-3: Investigate technologies/resources/components with social/ethical/legal constraints.
-- DSN10-1: Design alternative solutions with functionality, accessibility, usability, aesthetics.
-- PI10-1: Select/justify/implement/test technologies/techniques/processes to produce solutions/prototypes.
-- EV10-1: Evaluate design processes and solutions against student-developed criteria.
+- DS10-1 (WA10DIGDS1): Secure access to data in networked systems (hardware/software focus).
+- DS10-2 (scope/sequence): Evaluate hardware specifications for performance and task suitability.
+- DR10-1 (WA10DIGDR1): Online documents as content, structure, presentation and purpose of distinctions.
+- DA10-1 (WA10DIGAD1): Analyse/visualise data with spreadsheets and relational databases; draw conclusions and predictions.
+- DA10-2 (WA10DIGAD2): Model and query entities and relationships using structured data.
+- PS10-1 (WA10DIGPS1): Apply APPs to critique systems and manage digital footprint.
+- PS10-2 (WA10DIGPS2): Identify user or software supply chain vulnerabilities.
+- DI10-1 (WA10DIGDI1): Define/decompose real-world problems using data gathering for client needs.
+- DI10-2 (WA10DIGDI2): Design and prototype UX/UI based on client needs.
+- DI10-3 (WA10DIGDI3): Design modular algorithms with functions and logical operators; represent as flow charts/pseudocode.
+- DI10-4 (WA10DIGDI4): Validate algorithms/programs using test cases.
+- DI10-5 (WA10DIGDI5): Implement/modify/debug modular programs using algorithms and data structures.
+- PM10-1 (WA10DIGDTPM1): Manage projects with agile/collab approach; consider time, production, social, ethical, economic, sustainability, legal.
+- ID10-1 (WA10DIGDTID1): Ideate and define client/stakeholder needs via evidence/data gathering.
+- ID10-2 (WA10DIGDTID2): Develop design briefs for solutions or innovations.
+- ID10-3 (WA10DIGDTID3): Investigate technologies/resources/components with social/ethical/legal constraints.
+- DSN10-1 (WA10DIGDTDE1): Design alternative solutions with functionality, accessibility, usability, aesthetics.
+- PI10-1 (WA10DIGDTPI1): Select/justify/implement/test technologies/techniques/processes to produce solutions/prototypes.
+- EV10-1 (WA10DIGDTEV1): Evaluate design processes and solutions against student-developed criteria.

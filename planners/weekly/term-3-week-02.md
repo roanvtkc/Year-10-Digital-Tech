@@ -3,7 +3,7 @@
 - Dates: 27 Jul - 31 Jul
 - Focus: Functions and modular design
 - Assessment/Checkpoint:  
-- Outcome tags: DI10-5
+- Outcome tags: DI10-5 (WA10DIGDI5)
 
 ## Lesson sequence (draft)
 1. 

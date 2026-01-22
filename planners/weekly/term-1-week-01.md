@@ -3,7 +3,7 @@
 - Dates: 2 Feb - 6 Feb
 - Focus: Course launch, major project overview, digital systems intro
 - Assessment/Checkpoint: Baseline diagnostic
-- Outcome tags: DS10-1
+- Outcome tags: DS10-1 (WA10DIGDS1)
 
 ## Lesson sequence (draft)
 1. 

@@ -3,7 +3,7 @@
 - Dates: 2 Mar - 6 Mar
 - Focus: UX/UI design, wireframes, criteria
 - Assessment/Checkpoint:  
-- Outcome tags: DI10-2, DSN10-1
+- Outcome tags: DI10-2 (WA10DIGDI2), DSN10-1 (WA10DIGDTDE1)
 
 ## Lesson sequence (draft)
 1. 

@@ -4,7 +4,7 @@
 Critique a digital system using the Australian Privacy Principles and evaluate security risks including supply chain vulnerabilities.
 
 ## Outcome tags
-PS10-1, PS10-2, DS10-1
+PS10-1 (WA10DIGPS1), PS10-2 (WA10DIGPS2), DS10-1 (WA10DIGDS1)
 
 ## Deliverables
 - Case study selection and system summary
