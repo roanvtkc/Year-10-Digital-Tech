@@ -6,15 +6,17 @@
 - Outcome tags: DA10-1 (WA10DIGAD1)
 
 ## Lesson sequence (draft)
-1. 
-2. 
-3. 
+1. Analyse a dataset in a spreadsheet and identify trends/outliers.
+2. Mini-lesson on key concepts and vocabulary.
+3. Guided practice or studio time aligned to the focus.
 
 ## Resources
-- 
+- CSV dataset and charting guide.
+- Teacher slides or quick reference sheet.
 
 ## Evidence of learning
-- 
+- Charts with written interpretation.
+- Classwork artefact or screenshot.
 
 ## Notes
 - 

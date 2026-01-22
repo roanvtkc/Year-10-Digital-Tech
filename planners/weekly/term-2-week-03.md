@@ -6,15 +6,17 @@
 - Outcome tags: DA10-2 (WA10DIGAD2)
 
 ## Lesson sequence (draft)
-1. 
-2. 
-3. 
+1. Create an ERD and write example queries for a relational database.
+2. Mini-lesson on key concepts and vocabulary.
+3. Guided practice or studio time aligned to the focus.
 
 ## Resources
-- 
+- ERD template and SQL cheat sheet.
+- Teacher slides or quick reference sheet.
 
 ## Evidence of learning
-- 
+- ERD diagram and query results.
+- Classwork artefact or screenshot.
 
 ## Notes
 - 

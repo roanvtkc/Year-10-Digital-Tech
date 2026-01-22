@@ -6,15 +6,17 @@
 - Outcome tags: DI10-2 (WA10DIGDI2), DA10-2 (WA10DIGAD2)
 
 ## Lesson sequence (draft)
-1. 
-2. 
-3. 
+1. Design and prototype UX/UI screens based on user requirements.
+2. Create an ERD and write example queries for a relational database.
+3. Mini-lesson on key concepts and vocabulary.
 
 ## Resources
-- 
+- Wireframe kit or Figma template.
+- ERD template and SQL cheat sheet.
 
 ## Evidence of learning
-- 
+- Prototype screens with feedback notes.
+- ERD diagram and query results.
 
 ## Notes
 - 
