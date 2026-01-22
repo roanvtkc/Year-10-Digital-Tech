@@ -1,0 +1,26 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Year10Nav from '../../../components/Year10Nav.astro';
+import { listMarkdownFiles, readMarkdownFile } from '../../../lib/content';
+
+const overview = readMarkdownFile('year-10-digital-tech/assessments/overview.md');
+const files = listMarkdownFiles('year-10-digital-tech/assessments')
+  .filter(path => !path.endsWith('overview.md'))
+  .map(path => readMarkdownFile(path))
+  .filter(Boolean);
+---
+
+<Layout title={overview?.title ?? 'Assessments'}>
+  <Year10Nav />
+  <main>
+    {overview ? <article set:html={overview.html} /> : null}
+    <section>
+      <h2>Assessment Briefs</h2>
+      <ul>
+        {files.map(file => (
+          <li><a href={`/year-10-digital-tech/assessments/${file.slug}`}>{file.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  </main>
+</Layout>

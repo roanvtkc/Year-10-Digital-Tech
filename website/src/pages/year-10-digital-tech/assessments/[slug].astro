@@ -1,0 +1,15 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Year10Nav from '../../../components/Year10Nav.astro';
+import { readMarkdownFile } from '../../../lib/content';
+
+const { slug } = Astro.params;
+const content = readMarkdownFile(`year-10-digital-tech/assessments/${slug}.md`);
+---
+
+<Layout title={content?.title ?? 'Assessment'}>
+  <Year10Nav />
+  <main>
+    {content ? <article set:html={content.html} /> : <p>Assessment not found.</p>}
+  </main>
+</Layout>

@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Year10Nav from '../../components/Year10Nav.astro';
+import { readMarkdownFile } from '../../lib/content';
+
+const content = readMarkdownFile('year-10-digital-tech/curriculum-code-index.md');
+---
+
+<Layout title={content?.title ?? 'Curriculum Code Index'}>
+  <Year10Nav />
+  <main>
+    {content ? <article set:html={content.html} /> : <p>Content not found.</p>}
+  </main>
+</Layout>

@@ -1,0 +1,26 @@
+---
+const { title = 'Year 10 Digital Technologies', description = '' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description ? <meta name="description" content={description} /> : null}
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, sans-serif; margin: 0; padding: 0; }
+      main { max-width: 900px; margin: 0 auto; padding: 24px; }
+      .y10-nav { display: flex; gap: 16px; padding: 16px 24px; background: #0b1b2b; }
+      .y10-nav a { color: #fff; text-decoration: none; font-weight: 600; }
+      .y10-nav a:hover { text-decoration: underline; }
+      article { line-height: 1.6; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; }
+      th { background: #f5f5f5; }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
