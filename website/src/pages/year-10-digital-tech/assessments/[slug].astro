@@ -7,7 +7,7 @@ const content = readMarkdownFile(`year-10-digital-tech/assessments/${slug}.md`);
 ---
 
 <Layout title={content?.title ?? 'Assessment'}>
-  <main>
-    {content ? <article set:html={content.html} /> : <p>Assessment not found.</p>}
+  <main class="container">
+    {content ? <article class="prose" set:html={content.html} /> : <p>Assessment not found.</p>}
   </main>
 </Layout>

@@ -167,6 +167,39 @@ main {
   padding: 12px 14px;
 }
 
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 20px 0 24px;
+}
+
+.tile {
+  display: block;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tile h3 {
+  margin: 0 0 6px;
+  color: var(--tkc-blue);
+}
+
+.tile p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+}
+
 footer {
   background: var(--tkc-blue-dark);
   color: #fff;
@@ -187,5 +220,21 @@ footer a {
   .site-header .container {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media print {
+  .site-header,
+  footer,
+  .site-nav {
+    display: none;
+  }
+
+  main {
+    padding: 0;
+  }
+
+  .prose table {
+    font-size: 11px;
   }
 }

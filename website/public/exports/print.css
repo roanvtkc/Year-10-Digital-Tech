@@ -1,0 +1,6 @@
+@page { margin: 14mm; }
+body { font-family: Arial, sans-serif; color: #111; }
+h1, h2, h3 { color: #111; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th, td { border: 1px solid #bbb; padding: 6px 8px; text-align: left; }
+th { background: #f0f0f0; }
