@@ -32,4 +32,7 @@ Student-facing notes and assessment briefs aligned to WA10 curriculum codes.
 
 ## Download printables
 - [Assessment calendar (HTML)](/exports/assessment-calendar-2026.html)
+- [Assessment calendar (PDF)](/exports/assessment-calendar-2026.pdf)
 - [Scope and sequence (HTML)](/exports/scope-sequence-2026.html)
+- [Scope and sequence (PDF)](/exports/scope-sequence-2026.pdf)
+- [All printables (PDF)](/exports/printables-2026.pdf)

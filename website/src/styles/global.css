@@ -178,6 +178,8 @@ main {
   padding: 8px 14px;
   border-radius: 999px;
   font-weight: 600;
+  border: none;
+  cursor: pointer;
 }
 
 .print-button:hover {

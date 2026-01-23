@@ -4,6 +4,7 @@ Printable schedule of assessment checkpoints across the year.
 
 <div class="print-actions">
   <a class="print-button" href="/exports/assessment-calendar-2026.html" target="_blank" rel="noopener">Open printable version</a>
+  <a class="print-button" href="/exports/assessment-calendar-2026.pdf" target="_blank" rel="noopener">Download PDF</a>
   <button class="print-button" onclick="window.print()">Print page</button>
 </div>
 <p class="last-updated">Last updated: {{LAST_UPDATED}}</p>
