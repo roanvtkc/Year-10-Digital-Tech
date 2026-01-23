@@ -140,17 +140,21 @@ def build_page(title: str, body_html: str, logo_uri: str) -> str:
   <title>{title} | Year 10 Digital Technologies</title>
 </head>
 <body style="margin:0;font-family:Arial, sans-serif;color:#111827;background:#ffffff;">
-  <div style="background:linear-gradient(135deg,#003865,#002847);color:#fff;padding:20px 28px;border-bottom:4px solid #C5B783;">
-    <div style="display:flex;align-items:center;gap:14px;">
-      <img src="{logo_uri}" alt="The King's College" style="width:52px;height:auto;" />
-      <div>
-        <div style="font-weight:700;font-size:20px;line-height:1.1;">Year 10 Digital Technologies</div>
-        <div style="color:#C5B783;font-size:13px;">The King's College · 2026</div>
-      </div>
-    </div>
+  <div style="background:#003865;color:#fff;padding:20px 28px;border-bottom:4px solid #C5B783;">
+    <table style="width:100%;border-collapse:collapse;">
+      <tr>
+        <td style="width:64px;vertical-align:middle;">
+          <img src="{logo_uri}" alt="The King's College" style="width:52px;height:auto;display:block;" />
+        </td>
+        <td style="vertical-align:middle;">
+          <div style="font-weight:700;font-size:20px;line-height:1.1;">Year 10 Digital Technologies</div>
+          <div style="color:#C5B783;font-size:13px;">The King's College · 2026</div>
+        </td>
+      </tr>
+    </table>
   </div>
   <div style="max-width:980px;margin:0 auto;padding:24px 28px 40px;">
-    <div style="background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:20px 22px;box-shadow:0 8px 24px rgba(0,0,0,0.08);">
+    <div style="background:#ffffff;border:1px solid #e5e7eb;padding:20px 22px;">
       <h1 style="margin-top:0;color:#003865;">{title}</h1>
       {body_html}
     </div>
