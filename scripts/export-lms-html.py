@@ -38,62 +38,14 @@ def ensure_output() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
-def load_css() -> str:
-    return """
-:root {
-  --tkc-blue: #003865;
-  --tkc-blue-dark: #002847;
-  --tkc-gold: #C5B783;
-  --text: #111827;
-  --muted: #6b7280;
-  --border: #e5e7eb;
-  --card: #f8fafc;
-  --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-  color: var(--text);
-  background: #fff;
-}
-.header {
-  background: linear-gradient(135deg, var(--tkc-blue), var(--tkc-blue-dark));
-  color: #fff;
-  padding: 20px 28px;
-  border-bottom: 4px solid var(--tkc-gold);
-}
-.header .brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.header img { width: 52px; }
-.header .title { font-weight: 700; font-size: 20px; }
-.header .subtitle { color: var(--tkc-gold); font-size: 13px; }
-.container { max-width: 980px; margin: 0 auto; padding: 24px 28px 40px; }
-.doc-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 22px;
-  box-shadow: var(--shadow);
-}
-.doc-card h1 { margin-top: 0; color: var(--tkc-blue); }
-.doc-card h2 { color: var(--tkc-blue); margin-top: 26px; }
-.doc-card h3 { color: var(--tkc-blue-dark); margin-top: 20px; }
-.doc-card p, .doc-card li { line-height: 1.6; }
-.doc-card table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
-.doc-card th, .doc-card td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
-.doc-card th { background: var(--card); }
-.doc-card ul { padding-left: 18px; }
- .footer { color: var(--muted); font-size: 12px; margin-top: 16px; }
-""".strip() + "\n"
-
 def logo_data_uri() -> str:
     if not LOGO_SRC.exists():
         return ''
     svg_bytes = LOGO_SRC.read_bytes()
+    svg_text = svg_bytes.decode('utf-8', errors='ignore')
+    match = re.search(r'data:image/png;base64,([A-Za-z0-9+/=]+)', svg_text)
+    if match:
+        return f'data:image/png;base64,{match.group(1)}'
     encoded = base64.b64encode(svg_bytes).decode('ascii')
     return f'data:image/svg+xml;base64,{encoded}'
 
@@ -126,6 +78,34 @@ def md_to_html_fragment(md_text: str) -> str:
     )
     return result.stdout
 
+def apply_inline_styles(html_text: str) -> str:
+    style_map = {
+        'h2': 'color:#003865;margin-top:26px;',
+        'h3': 'color:#002847;margin-top:20px;',
+        'p': 'line-height:1.6;',
+        'li': 'line-height:1.6;',
+        'ul': 'padding-left:18px;margin-top:8px;',
+        'ol': 'padding-left:18px;margin-top:8px;',
+        'table': 'width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;',
+        'th': 'border:1px solid #e5e7eb;padding:8px 10px;text-align:left;background:#f8fafc;',
+        'td': 'border:1px solid #e5e7eb;padding:8px 10px;text-align:left;',
+        'img': 'max-width:100%;height:auto;',
+    }
+
+    def repl(tag: str):
+        pattern = re.compile(rf'<{tag}([^>]*)>', flags=re.I)
+        def _replace(match: re.Match) -> str:
+            attrs = match.group(1)
+            if 'style=' in attrs:
+                return match.group(0)
+            return f'<{tag} style=\"{style_map[tag]}\"{attrs}>'
+        return pattern.sub(_replace, html_text)
+
+    for tag in style_map:
+        html_text = repl(tag)
+
+    return html_text
+
 
 def extract_body(html_text: str) -> str:
     match = re.search(r'<body[^>]*>(.*)</body>', html_text, flags=re.S | re.I)
@@ -151,36 +131,30 @@ def remove_first_h1(html_fragment: str) -> str:
 
 
 def build_page(title: str, body_html: str, logo_uri: str) -> str:
-    css = load_css()
+    body_html = apply_inline_styles(body_html)
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title} | Year 10 Digital Technologies</title>
-  <style>
-{css}
-  </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
-<body>
-  <header class="header">
-    <div class="brand">
-      <img src="{logo_uri}" alt="The King's College" />
+<body style="margin:0;font-family:Arial, sans-serif;color:#111827;background:#ffffff;">
+  <div style="background:linear-gradient(135deg,#003865,#002847);color:#fff;padding:20px 28px;border-bottom:4px solid #C5B783;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <img src="{logo_uri}" alt="The King's College" style="width:52px;height:auto;" />
       <div>
-        <div class="title">Year 10 Digital Technologies</div>
-        <div class="subtitle">The King's College · 2026</div>
+        <div style="font-weight:700;font-size:20px;line-height:1.1;">Year 10 Digital Technologies</div>
+        <div style="color:#C5B783;font-size:13px;">The King's College · 2026</div>
       </div>
     </div>
-  </header>
-  <main class="container">
-    <div class="doc-card">
-      <h1>{title}</h1>
+  </div>
+  <div style="max-width:980px;margin:0 auto;padding:24px 28px 40px;">
+    <div style="background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:20px 22px;box-shadow:0 8px 24px rgba(0,0,0,0.08);">
+      <h1 style="margin-top:0;color:#003865;">{title}</h1>
       {body_html}
     </div>
-  </main>
+  </div>
 </body>
 </html>
 """
