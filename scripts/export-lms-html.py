@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import base64
 import re
 import subprocess
 from pathlib import Path
@@ -35,9 +36,6 @@ HTML_SOURCES = {
 
 def ensure_output() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    (OUT_DIR / 'assets').mkdir(parents=True, exist_ok=True)
-    if LOGO_SRC.exists():
-        (OUT_DIR / 'assets' / 'tkc-crest.svg').write_text(LOGO_SRC.read_text(encoding='utf-8'), encoding='utf-8')
 
 
 def load_css() -> str:
@@ -89,12 +87,15 @@ body {
 .doc-card th, .doc-card td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
 .doc-card th { background: var(--card); }
 .doc-card ul { padding-left: 18px; }
-.footer { color: var(--muted); font-size: 12px; margin-top: 16px; }
+ .footer { color: var(--muted); font-size: 12px; margin-top: 16px; }
 """.strip() + "\n"
 
-
-def write_css() -> None:
-    (OUT_DIR / 'assets' / 'style.css').write_text(load_css(), encoding='utf-8')
+def logo_data_uri() -> str:
+    if not LOGO_SRC.exists():
+        return ''
+    svg_bytes = LOGO_SRC.read_bytes()
+    encoded = base64.b64encode(svg_bytes).decode('ascii')
+    return f'data:image/svg+xml;base64,{encoded}'
 
 
 def strip_markdown_extras(text: str) -> str:
@@ -146,14 +147,17 @@ def extract_title_and_body(html_text: str) -> tuple[str, str]:
     return title, body.strip()
 
 
-def build_page(title: str, body_html: str) -> str:
+def build_page(title: str, body_html: str, logo_uri: str) -> str:
+    css = load_css()
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title} | Year 10 Digital Technologies</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+{css}
+  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -161,7 +165,7 @@ def build_page(title: str, body_html: str) -> str:
 <body>
   <header class="header">
     <div class="brand">
-      <img src="assets/tkc-crest.svg" alt="The King's College" />
+      <img src="{logo_uri}" alt="The King's College" />
       <div>
         <div class="title">Year 10 Digital Technologies</div>
         <div class="subtitle">The King's College · 2026</div>
@@ -181,6 +185,7 @@ def build_page(title: str, body_html: str) -> str:
 
 
 def generate_from_markdown() -> None:
+    logo_uri = logo_data_uri()
     for out_name, src in MARKDOWN_SOURCES.items():
         text = src.read_text(encoding='utf-8')
         text = strip_markdown_extras(text)
@@ -188,23 +193,23 @@ def generate_from_markdown() -> None:
         # Extract title from first H1
         title_match = re.search(r'^#\s+(.+)$', text, flags=re.M)
         title = title_match.group(1).strip() if title_match else out_name.replace('.html', '').replace('-', ' ')
-        page = build_page(title, html_fragment)
+        page = build_page(title, html_fragment, logo_uri)
         (OUT_DIR / out_name).write_text(page, encoding='utf-8')
 
 
 def generate_from_html() -> None:
+    logo_uri = logo_data_uri()
     for out_name, src in HTML_SOURCES.items():
         html_text = src.read_text(encoding='utf-8')
         title, body = extract_title_and_body(html_text)
         if not title:
             title = out_name.replace('.html', '').replace('-', ' ')
-        page = build_page(title, body)
+        page = build_page(title, body, logo_uri)
         (OUT_DIR / out_name).write_text(page, encoding='utf-8')
 
 
 def main() -> None:
     ensure_output()
-    write_css()
     generate_from_markdown()
     generate_from_html()
 
