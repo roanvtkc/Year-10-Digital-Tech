@@ -2,6 +2,11 @@
 
 Aligned to WA10 curriculum codes in `curriculum-code-index.md`.
 
+<div class="print-actions">
+  <a class="print-button" href="/exports/scope-sequence-2026.html" target="_blank" rel="noopener">Open printable version</a>
+</div>
+<p class="last-updated">Last updated: 2026-01-23</p>
+
 ## Term 1 (9 weeks)
 | Week | Dates | Focus | Assessment/Checkpoint | Curriculum codes |
 | --- | --- | --- | --- | --- |

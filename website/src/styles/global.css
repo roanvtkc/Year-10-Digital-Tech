@@ -167,6 +167,30 @@ main {
   padding: 12px 14px;
 }
 
+.print-actions {
+  margin: 12px 0 8px;
+}
+
+.print-button {
+  display: inline-block;
+  background: var(--tkc-blue);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.print-button:hover {
+  background: var(--tkc-blue-dark);
+  text-decoration: none;
+}
+
+.last-updated {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
 .tile-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -226,7 +250,8 @@ footer a {
 @media print {
   .site-header,
   footer,
-  .site-nav {
+  .site-nav,
+  .print-actions {
     display: none;
   }
 
