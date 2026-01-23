@@ -17,6 +17,14 @@ FILES = {
     'scope-sequence-2026.md': 'scope-sequence-2026',
 }
 
+RUBRICS = [
+    ('Major Project Rubric', ROOT / 'assessments' / 'major-project' / 'rubric.md'),
+    ('Minor A1 Rubric', ROOT / 'assessments' / 'minor' / 'a1-ux-ui-rubric.md'),
+    ('Minor A2 Rubric', ROOT / 'assessments' / 'minor' / 'a2-data-analysis-rubric.md'),
+    ('Minor A3 Rubric', ROOT / 'assessments' / 'minor' / 'a3-algorithms-rubric.md'),
+    ('Minor A4 Rubric', ROOT / 'assessments' / 'minor' / 'a4-privacy-security-rubric.md'),
+]
+
 QR_TARGETS = {
     'assessment-calendar-2026.html': 'assessment-calendar-2026',
     'scope-sequence-2026.html': 'scope-sequence-2026',
@@ -52,6 +60,23 @@ def strip_print_elements(text: str) -> str:
             line = line.replace('{{LAST_UPDATED}}', '')
         lines.append(line)
     return '\n'.join(lines).strip() + '\n'
+
+def strip_top_heading(text: str) -> str:
+    lines = text.splitlines()
+    if lines and lines[0].startswith('# '):
+        return '\n'.join(lines[1:]).strip() + '\n'
+    return text
+
+def demote_headings(text: str, levels: int = 2) -> str:
+    output = []
+    for line in text.splitlines():
+        if line.startswith('#'):
+            hashes = len(line) - len(line.lstrip('#'))
+            new_hashes = min(6, hashes + levels)
+            output.append('#' * new_hashes + line[hashes:])
+        else:
+            output.append(line)
+    return '\n'.join(output).strip() + '\n'
 
 
 def run_pandoc(markdown_text: str, out_path: Path, css_name: str) -> None:
@@ -155,18 +180,32 @@ def build_combined_pack(base_url: str) -> None:
 
 
 def build_teacher_pack(base_url: str) -> None:
-    outline = strip_print_elements((ROOT / 'docs' / 'assessment-outline.md').read_text(encoding='utf-8'))
-    calendar = strip_print_elements((CONTENT_DIR / 'assessment-calendar-2026.md').read_text(encoding='utf-8'))
-    scope = strip_print_elements((CONTENT_DIR / 'scope-sequence-2026.md').read_text(encoding='utf-8'))
+    outline = strip_top_heading(strip_print_elements((ROOT / 'docs' / 'assessment-outline.md').read_text(encoding='utf-8')))
+    calendar = strip_top_heading(strip_print_elements((CONTENT_DIR / 'assessment-calendar-2026.md').read_text(encoding='utf-8')))
+    scope = strip_top_heading(strip_print_elements((CONTENT_DIR / 'scope-sequence-2026.md').read_text(encoding='utf-8')))
+    weekly_overview = strip_top_heading((ROOT / 'planners' / 'weekly' / 'overview.md').read_text(encoding='utf-8'))
+
+    rubric_blocks = []
+    for title, path in RUBRICS:
+        if not path.exists():
+            continue
+        rubric_text = demote_headings(strip_top_heading(path.read_text(encoding='utf-8')), levels=2)
+        rubric_blocks.append(f'### {title}\n\n{rubric_text}')
+
+    rubrics_text = '\n'.join(rubric_blocks)
 
     combined_md = (
         '# Year 10 Digital Technologies Teacher Pack (2026)\n\n'
         '## Assessment Outline\n\n'
         f'{outline}\n\n'
+        '## Weekly Overview\n\n'
+        f'{weekly_overview}\n\n'
         '## Assessment Calendar\n\n'
         f'{calendar}\n\n'
         '## Scope and Sequence\n\n'
-        f'{scope}\n'
+        f'{scope}\n\n'
+        '## Assessment Rubrics\n\n'
+        f'{rubrics_text}\n'
     )
 
     for out_dir in (EXPORTS_DIR, PUBLIC_EXPORTS):
