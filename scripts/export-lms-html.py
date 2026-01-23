@@ -146,6 +146,9 @@ def extract_title_and_body(html_text: str) -> tuple[str, str]:
         body = body[:title_match.start()] + body[title_match.end():]
     return title, body.strip()
 
+def remove_first_h1(html_fragment: str) -> str:
+    return re.sub(r'<h1[^>]*>.*?</h1>', '', html_fragment, count=1, flags=re.S | re.I).strip()
+
 
 def build_page(title: str, body_html: str, logo_uri: str) -> str:
     css = load_css()
@@ -177,7 +180,6 @@ def build_page(title: str, body_html: str, logo_uri: str) -> str:
       <h1>{title}</h1>
       {body_html}
     </div>
-    <div class="footer">Generated for LMS upload.</div>
   </main>
 </body>
 </html>
@@ -190,6 +192,7 @@ def generate_from_markdown() -> None:
         text = src.read_text(encoding='utf-8')
         text = strip_markdown_extras(text)
         html_fragment = md_to_html_fragment(text)
+        html_fragment = remove_first_h1(html_fragment)
         # Extract title from first H1
         title_match = re.search(r'^#\s+(.+)$', text, flags=re.M)
         title = title_match.group(1).strip() if title_match else out_name.replace('.html', '').replace('-', ' ')
