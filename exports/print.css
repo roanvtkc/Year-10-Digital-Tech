@@ -11,3 +11,17 @@ body > nav,
 body > footer {
   display: none;
 }
+.qr-block {
+  margin: 10px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.qr-block img {
+  width: 100px;
+  height: 100px;
+}
+.qr-block span {
+  font-size: 11px;
+  color: #333;
+}

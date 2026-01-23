@@ -36,3 +36,4 @@ Student-facing notes and assessment briefs aligned to WA10 curriculum codes.
 - [Scope and sequence (HTML)](/exports/scope-sequence-2026.html)
 - [Scope and sequence (PDF)](/exports/scope-sequence-2026.pdf)
 - [All printables (PDF)](/exports/printables-2026.pdf)
+- [Teacher pack (PDF)](/exports/teacher-pack-2026.pdf)

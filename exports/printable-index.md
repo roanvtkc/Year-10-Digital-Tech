@@ -8,3 +8,4 @@
 
 ## Combined pack
 - All printables (PDF): `/exports/printables-2026.pdf`
+- Teacher pack (PDF): `/exports/teacher-pack-2026.pdf`
