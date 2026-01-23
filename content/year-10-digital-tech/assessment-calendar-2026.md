@@ -4,8 +4,9 @@ Printable schedule of assessment checkpoints across the year.
 
 <div class="print-actions">
   <a class="print-button" href="/exports/assessment-calendar-2026.html" target="_blank" rel="noopener">Open printable version</a>
+  <button class="print-button" onclick="window.print()">Print page</button>
 </div>
-<p class="last-updated">Last updated: 2026-01-23</p>
+<p class="last-updated">Last updated: {{LAST_UPDATED}}</p>
 
 ## Term 1 (9 weeks)
 | Week | Dates | Assessment/Checkpoint | Curriculum codes |

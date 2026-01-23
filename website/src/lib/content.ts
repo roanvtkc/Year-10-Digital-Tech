@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 
@@ -22,7 +23,13 @@ export function readMarkdownFile(filePath: string): ContentFile | null {
     }
 
     const fileContent = fs.readFileSync(fullPath, 'utf-8');
-    const { data, content } = matter(fileContent);
+    let contentText = fileContent;
+    if (contentText.includes('{{LAST_UPDATED}}')) {
+      const updated = getGitLastUpdated(fullPath);
+      contentText = contentText.replace(/\{\{LAST_UPDATED\}\}/g, updated ?? 'Unknown');
+    }
+
+    const { data, content } = matter(contentText);
 
     const titleMatch = content.match(/^#\s+(.+)$/m);
     const title = (data.title as string) || (titleMatch ? titleMatch[1] : path.basename(filePath, '.md'));
@@ -57,5 +64,16 @@ export function listMarkdownFiles(dirPath: string): string[] {
   } catch (error) {
     console.error(`Error listing directory ${dirPath}:`, error);
     return [];
+  }
+}
+
+function getGitLastUpdated(fullPath: string): string | null {
+  try {
+    const root = path.resolve(process.cwd(), '..');
+    const output = execSync(`git -C \"${root}\" log -1 --format=%cs -- \"${fullPath}\"`, { encoding: 'utf-8' }).trim();
+    return output || null;
+  } catch (error) {
+    console.error('Error reading git last updated:', error);
+    return null;
   }
 }
