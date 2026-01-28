@@ -1,6 +1,6 @@
 @page { margin: 14mm; }
 body { font-family: Arial, sans-serif; color: #111; }
-h1, h2, h3 { color: #111; }
+h1, h2, h3 { color: #003865; }
 table { width: 100%; border-collapse: collapse; font-size: 12px; }
 th, td { border: 1px solid #bbb; padding: 6px 8px; text-align: left; }
 th { background: #f0f0f0; }
@@ -11,17 +11,16 @@ body > nav,
 body > footer {
   display: none;
 }
-.qr-block {
-  margin: 10px 0 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.brand-header {
+  background: #003865;
+  color: #fff;
+  padding: 12px 14px;
+  border-bottom: 4px solid #C5B783;
+  margin: 0 0 14px;
 }
-.qr-block img {
-  width: 100px;
-  height: 100px;
-}
-.qr-block span {
-  font-size: 11px;
-  color: #333;
-}
+.brand-table { width: 100%; border-collapse: collapse; }
+.brand-logo-cell { width: 56px; vertical-align: middle; }
+.brand-text-cell { vertical-align: middle; }
+.brand-logo { width: 48px; height: auto; display: block; }
+.brand-title { font-weight: 700; font-size: 18px; line-height: 1.1; }
+.brand-subtitle { color: #C5B783; font-size: 12px; }

@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import re
 import subprocess
+import base64
 from pathlib import Path
 
 ROOT = Path('/Users/RoanV/Year-10-Digital-Tech')
@@ -11,6 +12,7 @@ CONTENT_DIR = ROOT / 'content' / 'year-10-digital-tech'
 EXPORTS_DIR = ROOT / 'exports'
 PUBLIC_EXPORTS = ROOT / 'website' / 'public' / 'exports'
 CONFIG_PATH = EXPORTS_DIR / 'printables-config.json'
+LOGO_SRC = ROOT / 'website' / 'public' / 'images' / 'tkc-crest.svg'
 
 FILES = {
     'assessment-calendar-2026.md': 'assessment-calendar-2026',
@@ -24,13 +26,6 @@ RUBRICS = [
     ('Minor A3 Rubric', ROOT / 'assessments' / 'minor' / 'a3-algorithms-rubric.md'),
     ('Minor A4 Rubric', ROOT / 'assessments' / 'minor' / 'a4-privacy-security-rubric.md'),
 ]
-
-QR_TARGETS = {
-    'assessment-calendar-2026.html': 'assessment-calendar-2026',
-    'scope-sequence-2026.html': 'scope-sequence-2026',
-    'printables-2026.pdf': 'printables-2026',
-    'teacher-pack-2026.pdf': 'teacher-pack-2026',
-}
 
 
 def load_base_url() -> str:
@@ -108,18 +103,43 @@ def extract_body(html_text: str) -> str:
     return match.group(1).strip() if match else html_text
 
 
-def generate_qr_images(base_url: str, out_dir: Path) -> None:
-    out_dir.mkdir(parents=True, exist_ok=True)
-    for filename, name in QR_TARGETS.items():
-        url = f'{base_url}/exports/{filename}' if base_url else f'/exports/{filename}'
-        png_path = out_dir / f'{name}.png'
-        subprocess.run(
-            ['qrencode', '-o', str(png_path), '-s', '6', '-m', '2', url],
-            check=True,
-        )
+def logo_data_uri() -> str:
+    if not LOGO_SRC.exists():
+        return ''
+    svg_text = LOGO_SRC.read_text(encoding='utf-8', errors='ignore')
+    match = re.search(r'data:image/png;base64,([A-Za-z0-9+/=]+)', svg_text)
+    if match:
+        return f'data:image/png;base64,{match.group(1)}'
+    svg_bytes = LOGO_SRC.read_bytes()
+    encoded = base64.b64encode(svg_bytes).decode('ascii')
+    return f'data:image/svg+xml;base64,{encoded}'
+
+
+def insert_brand_header(html_text: str, logo_uri: str) -> str:
+    header = (
+        '<div class="brand-header">'
+        '  <table class="brand-table">'
+        '    <tr>'
+        '      <td class="brand-logo-cell">'
+        f'        <img class="brand-logo" src="{logo_uri}" alt="The King\'s College" />'
+        '      </td>'
+        '      <td class="brand-text-cell">'
+        '        <div class="brand-title">Year 10 Digital Technologies</div>'
+        '        <div class="brand-subtitle">The King\'s College · 2026</div>'
+        '      </td>'
+        '    </tr>'
+        '  </table>'
+        '</div>'
+    )
+    body_match = re.search(r'<body[^>]*>', html_text, flags=re.I)
+    if not body_match:
+        return html_text
+    insert_at = body_match.end()
+    return html_text[:insert_at] + '\n' + header + '\n' + html_text[insert_at:]
 
 
 def build_calendar_and_scope(base_url: str) -> None:
+    logo_uri = logo_data_uri()
     for md_name, base in FILES.items():
         md_path = CONTENT_DIR / md_name
         text = md_path.read_text(encoding='utf-8')
@@ -133,16 +153,15 @@ def build_calendar_and_scope(base_url: str) -> None:
 
             run_pandoc(text, html_path, 'print.css')
 
-            qr_rel = f'qr/{base}.png'
-            label = f'Online version: {base_url}/exports/{base}.html' if base_url else f'Online version: /exports/{base}.html'
             html_text = html_path.read_text(encoding='utf-8')
-            html_text = insert_qr_block(html_text, qr_rel, label)
+            html_text = insert_brand_header(html_text, logo_uri)
             html_path.write_text(html_text, encoding='utf-8')
 
             subprocess.run(['weasyprint', str(html_path), str(pdf_path)], check=True)
 
 
 def build_combined_pack(base_url: str) -> None:
+    logo_uri = logo_data_uri()
     calendar_html = (EXPORTS_DIR / 'assessment-calendar-2026.html').read_text(encoding='utf-8')
     scope_html = (EXPORTS_DIR / 'scope-sequence-2026.html').read_text(encoding='utf-8')
 
@@ -170,16 +189,13 @@ def build_combined_pack(base_url: str) -> None:
     for out_dir in (EXPORTS_DIR, PUBLIC_EXPORTS):
         html_path = out_dir / 'printables-2026.html'
         pdf_path = out_dir / 'printables-2026.pdf'
-        html_text = insert_qr_block(
-            combined_html,
-            'qr/printables-2026.png',
-            f'Online version: {base_url}/exports/printables-2026.pdf' if base_url else 'Online version: /exports/printables-2026.pdf'
-        )
+        html_text = insert_brand_header(combined_html, logo_uri)
         html_path.write_text(html_text, encoding='utf-8')
         subprocess.run(['weasyprint', str(html_path), str(pdf_path)], check=True)
 
 
 def build_teacher_pack(base_url: str) -> None:
+    logo_uri = logo_data_uri()
     outline = strip_top_heading(strip_print_elements((ROOT / 'docs' / 'assessment-outline.md').read_text(encoding='utf-8')))
     calendar = strip_top_heading(strip_print_elements((CONTENT_DIR / 'assessment-calendar-2026.md').read_text(encoding='utf-8')))
     scope = strip_top_heading(strip_print_elements((CONTENT_DIR / 'scope-sequence-2026.md').read_text(encoding='utf-8')))
@@ -213,11 +229,7 @@ def build_teacher_pack(base_url: str) -> None:
         pdf_path = out_dir / 'teacher-pack-2026.pdf'
         run_pandoc(combined_md, html_path, 'print.css')
         html_text = html_path.read_text(encoding='utf-8')
-        html_text = insert_qr_block(
-            html_text,
-            'qr/teacher-pack-2026.png',
-            f'Online version: {base_url}/exports/teacher-pack-2026.pdf' if base_url else 'Online version: /exports/teacher-pack-2026.pdf'
-        )
+        html_text = insert_brand_header(html_text, logo_uri)
         html_path.write_text(html_text, encoding='utf-8')
         subprocess.run(['weasyprint', str(html_path), str(pdf_path)], check=True)
 
@@ -241,9 +253,6 @@ def update_printables_readme() -> None:
 
 def main() -> None:
     base_url = load_base_url()
-    generate_qr_images(base_url, EXPORTS_DIR / 'qr')
-    generate_qr_images(base_url, PUBLIC_EXPORTS / 'qr')
-
     build_calendar_and_scope(base_url)
     build_combined_pack(base_url)
     build_teacher_pack(base_url)
