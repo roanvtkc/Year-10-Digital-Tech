@@ -19,6 +19,7 @@ body > footer {
   margin: 0 0 14px;
 }
 .brand-table { width: 100%; border-collapse: collapse; }
+.brand-table td { border: none !important; }
 .brand-logo-cell { width: 56px; vertical-align: middle; }
 .brand-text-cell { vertical-align: middle; }
 .brand-logo { width: 48px; height: auto; display: block; }
