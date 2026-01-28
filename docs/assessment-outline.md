@@ -4,11 +4,11 @@
 The assessment structure uses one major project, supported by smaller assessments that build the required skills and knowledge. Outcome tags referenced below are defined in `syllabus/outcomes.md` and labeled with WA10 curriculum codes.
 
 ## Assessment set (draft)
-- Minor A1: UX/UI brief and prototype (client needs, UX/UI, design thinking)
-- Minor A2: Data and database analysis task (spreadsheets + relational databases)
-- Minor A3: Algorithms and modular programming sprint (functions, logical operators, testing)
-- Minor A4: Privacy and security case study (APPs, supply chain vulnerabilities)
-- Major M1: Capstone build (database-driven website/app tied to the main project)
+- Minor A1 (15%): UX/UI brief and prototype (client needs, UX/UI, design thinking)
+- Minor A2 (15%): Data and database analysis task (spreadsheets + relational databases)
+- Minor A3 (15%): Algorithms and modular programming sprint (functions, logical operators, testing)
+- Minor A4 (15%): Privacy and security case study (APPs, supply chain vulnerabilities)
+- Major M1 (40%): Capstone build (database-driven website/app tied to the main project)
 
 ## Major project
 - Brief: `assessments/major-project/brief.md`
