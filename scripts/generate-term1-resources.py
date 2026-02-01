@@ -205,11 +205,71 @@ def worksheet_html(week: dict, logo_path: Path) -> str:
 """
 
 
+def resource_html(week: dict, logo_path: Path, title: str, body_html: str) -> str:
+    logo_uri = f"file://{logo_path}"
+    return f"""<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @page {{ margin: 14mm; }}
+    body {{ font-family: Arial, sans-serif; color: #111827; }}
+    h1, h2 {{ color: #003865; }}
+    .brand-header {{
+      background: #003865;
+      color: #fff;
+      padding: 12px 14px;
+      border-bottom: 4px solid #C5B783;
+      margin: 0 0 12px;
+    }}
+    .brand-table {{ width: 100%; border-collapse: collapse; }}
+    .brand-table td {{ border: none; }}
+    .brand-logo {{ width: 48px; height: auto; }}
+    .brand-title {{ font-weight: 700; font-size: 18px; }}
+    .brand-subtitle {{ color: #C5B783; font-size: 12px; }}
+    table {{ width: 100%; border-collapse: collapse; font-size: 12px; }}
+    th, td {{ border: 1px solid #bbb; padding: 6px 8px; text-align: left; }}
+    th {{ background: #f0f0f0; }}
+    .box {{ border: 1px solid #999; height: 120px; margin: 8px 0; }}
+    .small {{ font-size: 12px; color: #4b5563; }}
+  </style>
+</head>
+<body>
+  <div class="brand-header">
+    <table class="brand-table">
+      <tr>
+        <td style="width:56px;"><img class="brand-logo" src="{logo_uri}" alt="The King's College" /></td>
+        <td>
+          <div class="brand-title">Year 10 Digital Technologies</div>
+          <div class="brand-subtitle">Term 1 · Week {week['num']:02d}</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <h1>{title}</h1>
+  <p class="small"><strong>Focus:</strong> {week['focus']} | <strong>Outcome tags:</strong> {week['outcomes']}</p>
+  {body_html}
+</body>
+</html>
+"""
+
+
 def write_worksheet(week: dict, out_dir: Path, logo_path: Path) -> None:
     html_path = out_dir / "worksheet.html"
     pdf_path = out_dir / "worksheet.pdf"
     html_path.write_text(worksheet_html(week, logo_path), encoding="utf-8")
     subprocess.run(["weasyprint", str(html_path), str(pdf_path)], check=True)
+
+    extras = week.get("extras", [])
+    for extra in extras:
+        extra_html_path = out_dir / f"{extra['filename']}.html"
+        extra_pdf_path = out_dir / f"{extra['filename']}.pdf"
+        extra_html_path.write_text(
+            resource_html(week, logo_path, extra["title"], extra["body_html"]),
+            encoding="utf-8",
+        )
+        subprocess.run(["weasyprint", str(extra_html_path), str(extra_pdf_path)], check=True)
 
 
 def build_resources() -> None:
@@ -220,6 +280,8 @@ def build_resources() -> None:
         pptx_path = week_dir / "slides.pptx"
         build_pptx(week, pptx_path, logo_path)
         write_worksheet(week, week_dir, logo_path)
+        for extra_file in week.get("extra_files", []):
+            (week_dir / extra_file["name"]).write_text(extra_file["content"], encoding="utf-8")
 
 
 WEEKS = [
@@ -266,6 +328,39 @@ WEEKS = [
                 "</table>"
             ),
         },
+        "extras": [
+            {
+                "filename": "baseline-diagnostic",
+                "title": "Baseline Diagnostic",
+                "body_html": (
+                    "<ol>"
+                    "<li>Define input, process, storage, and output.</li>"
+                    "<li>Give one example of a digital system.</li>"
+                    "<li>Identify one risk in a data flow.</li>"
+                    "<li>What is one way to mitigate that risk?</li>"
+                    "<li>What do you want to learn in this course?</li>"
+                    "</ol>"
+                ),
+            },
+            {
+                "filename": "major-project-overview",
+                "title": "Major Project Overview",
+                "body_html": (
+                    "<h2>Goal</h2><p>Build a database‑driven website/app that demonstrates your skills in design, data, and implementation.</p>"
+                    "<h2>Key deliverables</h2><ul>"
+                    "<li>Design brief + success criteria</li>"
+                    "<li>Prototype and evaluation</li>"
+                    "<li>Working build with documentation</li>"
+                    "</ul>"
+                    "<h2>Milestones</h2><ul>"
+                    "<li>Proposal and brief draft (Term 1)</li>"
+                    "<li>Data model and early build (Term 2)</li>"
+                    "<li>Core features and testing (Term 3)</li>"
+                    "<li>Final delivery and reflection (Term 4)</li>"
+                    "</ul>"
+                ),
+            },
+        ],
     },
     {
         "num": 2,
@@ -310,6 +405,31 @@ WEEKS = [
                 "<div class=\"box\"></div>"
             ),
         },
+        "extras": [
+            {
+                "filename": "device-specs",
+                "title": "Device Specification Sheet",
+                "body_html": (
+                    "<table><tr><th>Device</th><th>CPU</th><th>RAM</th><th>Storage</th><th>GPU</th><th>Notes</th></tr>"
+                    "<tr><td>Device A</td><td></td><td></td><td></td><td></td><td></td></tr>"
+                    "<tr><td>Device B</td><td></td><td></td><td></td><td></td><td></td></tr>"
+                    "<tr><td>Device C</td><td></td><td></td><td></td><td></td><td></td></tr>"
+                    "</table>"
+                ),
+            },
+            {
+                "filename": "benchmark-notes",
+                "title": "Benchmark Notes",
+                "body_html": (
+                    "<ul>"
+                    "<li>CPU: single‑core vs multi‑core performance</li>"
+                    "<li>RAM: multitasking and file size limits</li>"
+                    "<li>Storage: SSD vs HDD load times</li>"
+                    "<li>GPU: rendering and graphics workloads</li>"
+                    "</ul>"
+                ),
+            },
+        ],
     },
     {
         "num": 3,
@@ -351,6 +471,53 @@ WEEKS = [
                 "<ul><li>header</li><li>nav</li><li>main</li><li>section</li><li>footer</li></ul>"
             ),
         },
+        "extras": [
+            {
+                "filename": "html-css-reference",
+                "title": "HTML/CSS Reference",
+                "body_html": (
+                    "<h2>HTML</h2><ul>"
+                    "<li>header, nav, main, section, article, footer</li>"
+                    "<li>h1‑h6, p, ul/ol, a, img</li>"
+                    "</ul>"
+                    "<h2>CSS</h2><ul>"
+                    "<li>Selectors: element, class, id</li>"
+                    "<li>Box model: margin, border, padding</li>"
+                    "<li>Layout: display, flex</li>"
+                    "</ul>"
+                ),
+            },
+        ],
+        "extra_files": [
+            {
+                "name": "starter-template.html",
+                "content": (
+                    "<!doctype html>\\n"
+                    "<html lang=\\\"en\\\">\\n"
+                    "<head>\\n  <meta charset=\\\"utf-8\\\" />\\n"
+                    "  <title>Starter Page</title>\\n"
+                    "  <link rel=\\\"stylesheet\\\" href=\\\"styles.css\\\" />\\n"
+                    "</head>\\n"
+                    "<body>\\n"
+                    "  <header><h1>Page Title</h1></header>\\n"
+                    "  <nav>Navigation</nav>\\n"
+                    "  <main>\\n    <section><h2>Section</h2><p>Content</p></section>\\n"
+                    "  </main>\\n"
+                    "  <footer>Footer</footer>\\n"
+                    "</body>\\n"
+                    "</html>\\n"
+                ),
+            },
+            {
+                "name": "styles.css",
+                "content": (
+                    "body { font-family: Arial, sans-serif; margin: 24px; }\\n"
+                    "header, nav, main, footer { margin-bottom: 16px; }\\n"
+                    "nav { background: #f3f4f6; padding: 8px; }\\n"
+                    "section { border: 1px solid #e5e7eb; padding: 12px; }\\n"
+                ),
+            },
+        ],
     },
     {
         "num": 4,
@@ -394,6 +561,29 @@ WEEKS = [
                 "<h2>Problem Statement</h2><div class=\"box\"></div>"
             ),
         },
+        "extras": [
+            {
+                "filename": "survey-template",
+                "title": "Survey / Interview Template",
+                "body_html": (
+                    "<ol>"
+                    "<li>What problem are we trying to solve?</li>"
+                    "<li>Who is the primary user?</li>"
+                    "<li>What tasks must the solution support?</li>"
+                    "<li>What constraints or limitations exist?</li>"
+                    "</ol>"
+                ),
+            },
+            {
+                "filename": "problem-framing",
+                "title": "Problem Framing Template",
+                "body_html": (
+                    "<p><strong>Problem statement:</strong></p><div class=\"box\"></div>"
+                    "<p><strong>Target audience:</strong></p><div class=\"box\"></div>"
+                    "<p><strong>Constraints:</strong></p><div class=\"box\"></div>"
+                ),
+            },
+        ],
     },
     {
         "num": 5,
@@ -438,6 +628,22 @@ WEEKS = [
                 "<tr><td>B</td><td></td><td></td></tr></table>"
             ),
         },
+        "extras": [
+            {
+                "filename": "wireframe-grid",
+                "title": "Wireframe Grid",
+                "body_html": "<div class=\"box\"></div><div class=\"box\"></div>",
+            },
+            {
+                "filename": "evaluation-matrix",
+                "title": "Evaluation Matrix",
+                "body_html": (
+                    "<table><tr><th>Option</th><th>Criteria Met</th><th>Notes</th></tr>"
+                    "<tr><td>A</td><td></td><td></td></tr>"
+                    "<tr><td>B</td><td></td><td></td></tr></table>"
+                ),
+            },
+        ],
     },
     {
         "num": 6,
@@ -482,6 +688,24 @@ WEEKS = [
                 "<tr><td></td><td></td><td></td></tr></table>"
             ),
         },
+        "extras": [
+            {
+                "filename": "feedback-form",
+                "title": "Feedback Form",
+                "body_html": (
+                    "<ul><li>What worked well?</li><li>What was confusing?</li><li>One improvement to make.</li></ul>"
+                ),
+            },
+            {
+                "filename": "iteration-log",
+                "title": "Iteration Log",
+                "body_html": (
+                    "<table><tr><th>Change</th><th>Reason</th><th>Result</th></tr>"
+                    "<tr><td></td><td></td><td></td></tr>"
+                    "<tr><td></td><td></td><td></td></tr></table>"
+                ),
+            },
+        ],
     },
     {
         "num": 7,
@@ -525,6 +749,26 @@ WEEKS = [
                 "<tr><td></td><td></td><td></td><td></td></tr></table>"
             ),
         },
+        "extras": [
+            {
+                "filename": "design-brief-template",
+                "title": "Design Brief Template",
+                "body_html": (
+                    "<ul><li>Problem statement</li><li>Target audience</li><li>Success criteria</li>"
+                    "<li>Constraints</li><li>Proposed solution</li></ul>"
+                    "<div class=\"box\"></div>"
+                ),
+            },
+            {
+                "filename": "sprint-plan",
+                "title": "Sprint Plan",
+                "body_html": (
+                    "<table><tr><th>Task</th><th>Owner</th><th>Estimate</th><th>Risk</th></tr>"
+                    "<tr><td></td><td></td><td></td><td></td></tr>"
+                    "<tr><td></td><td></td><td></td><td></td></tr></table>"
+                ),
+            },
+        ],
     },
     {
         "num": 8,
@@ -568,6 +812,25 @@ WEEKS = [
                 "<tr><td></td><td></td><td></td></tr></table>"
             ),
         },
+        "extras": [
+            {
+                "filename": "presentation-checklist",
+                "title": "Presentation Checklist",
+                "body_html": (
+                    "<ul><li>Problem and audience</li><li>Prototype walkthrough</li>"
+                    "<li>Design decisions</li><li>Next steps</li></ul>"
+                ),
+            },
+            {
+                "filename": "evaluation-summary",
+                "title": "Evaluation Summary",
+                "body_html": (
+                    "<table><tr><th>Criteria</th><th>Evidence</th><th>Improvement</th></tr>"
+                    "<tr><td></td><td></td><td></td></tr>"
+                    "<tr><td></td><td></td><td></td></tr></table>"
+                ),
+            },
+        ],
     },
     {
         "num": 9,
@@ -613,6 +876,34 @@ WEEKS = [
                 "<h2>Reflection</h2><div class=\"box\"></div>"
             ),
         },
+        "extras": [
+            {
+                "filename": "final-checklist",
+                "title": "Final Checklist",
+                "body_html": (
+                    "<ul><li>Problem statement clear</li><li>Audience defined</li>"
+                    "<li>Success criteria listed</li><li>Constraints acknowledged</li>"
+                    "<li>Proposed solution described</li></ul>"
+                ),
+            },
+            {
+                "filename": "tradeoff-table",
+                "title": "Technology Trade-off Table",
+                "body_html": (
+                    "<table><tr><th>Option</th><th>Benefit</th><th>Risk</th><th>Decision</th></tr>"
+                    "<tr><td></td><td></td><td></td><td></td></tr>"
+                    "<tr><td></td><td></td><td></td><td></td></tr></table>"
+                ),
+            },
+            {
+                "filename": "reflection-prompt",
+                "title": "Reflection Prompt",
+                "body_html": (
+                    "<p>What did you learn this term? What will you improve next term?</p>"
+                    "<div class=\"box\"></div>"
+                ),
+            },
+        ],
     },
 ]
 
